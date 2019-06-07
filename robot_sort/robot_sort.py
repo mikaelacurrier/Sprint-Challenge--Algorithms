@@ -96,18 +96,20 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+         # Always pick up the first item
         self.swap_item()
-        self.set_light_on()
         while True:
+            # While robot can move right...
             while self.move_right():
+                # If the held item is larger than the current, swap
                 if self.compare_item() == 1:
                     self.swap_item()
-            
+            # Checks if no number at current index exists and breaks while loop
             if self.compare_item() is None:
                 self.swap_item()
-                self.set_light_off()
                 break
             else:
+                # Replaces item in hand with the None
                 while self.move_left():
                     if self.compare_item() is None:
                         self.swap_item()
